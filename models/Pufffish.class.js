@@ -1,0 +1,4 @@
+class Pufffish extends MovableObjects {
+
+
+}
