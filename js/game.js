@@ -1,13 +1,13 @@
-let canavas;
-let ctx;
-let world = new World();
+let canvas;
+let Earth;
+
 
 function init() {
-    canavas = document.getElementById('canvas')
-    ctx = canavas.getContext('2d');
+    canvas = document.getElementById('canvas')
+    Earth = new World(canvas);
 
-    console.log('My Character is', world.character);
-    console.log('enimes', world.enemies);
+    console.log('My Character is', Earth.character);
+    console.log('enemies', Earth.enemies);
 
 
 }
