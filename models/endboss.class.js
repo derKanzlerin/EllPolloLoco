@@ -1,8 +1,8 @@
-class Character extends MovableObjects {
+class Endboss extends MovableObjects {
     width = 400;
     height = 324;
     // size = 0.5;
-    x = 0;
+    x = 620;
 
     speed = 5;
 
@@ -40,7 +40,7 @@ class Character extends MovableObjects {
 
     currentImage = 0;
 
-    constructor() {
+    constructor() { 
         super().loadImage('graphics/1.Sharkie/1.IDLE/1.png');
 
         this.loadImages(this.IMAGES_IDLE);

@@ -1,17 +1,15 @@
-class Backgroundobjects extends MovableObjects {
+class BGOWater extends MovableObjects {
 
     width = 720;
     height = 405;
-    x = 0;
-    y = 75;
 
 
-    constructor(ImagePath, x, y) {
+    constructor(ImagePath, x) {
         super().loadImage(ImagePath);
         this.width = this.width;
         this.height = this.height;
+        this.y = 0;
         this.x = x;
-        this, y = y;
     }
 
 }
