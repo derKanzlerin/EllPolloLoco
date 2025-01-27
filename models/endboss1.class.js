@@ -52,27 +52,54 @@ class Endboss extends MovableObjects {
 
     animate() {
         setInterval(() => {
-            
-                let i = this.currentImage % this.IMAGES_INTRO.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 
-                let path = this.IMAGES_INTRO[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
-                
-            
+
+            let i = this.currentImage % this.IMAGES_INTRO.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 
+            let path = this.IMAGES_INTRO[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+
+
         }, 1000 / 60)
     };
 
 
-
-    jump(){
+    animate() {
         setInterval(() => {
-            
+            if (Earth.character.x < 500) {
+                console.log('boss', 'waiting for Character');
+            } else {
+                let i = this.currentImage % this.IMAGES_INTRO.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 
+                let path = this.IMAGES_INTRO[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+
+
+            }
+            if (Earth.character.x > 510) {
+                let i = this.currentImage % this.IMAGES_IDLE.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 
+                let path = this.IMAGES_IDLE[i];
+                this.img = this.imageCache[path];
+                this.currentImage++;
+            }
+        }, 1000 / 5)
+
+
+
+        ;
+    }
+
+
+
+    jump() {
+        setInterval(() => {
+
             let i = this.currentImage % this.IMAGES_IDLE.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 
             let path = this.IMAGES_IDLE[i];
             this.img = this.imageCache[path];
             this.currentImage++;
-        
-    }, 160);
-        
-        ;}
+
+        }, 160);
+
+        ;
+    }
 }
