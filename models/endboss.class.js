@@ -2,7 +2,7 @@ class Endboss extends MovableObjects {
     width = 400;
     height = 324;
     // size = 0.5;
-    x = 620;
+    x = 850;
 
     speed = 5;
 
@@ -61,34 +61,49 @@ class Endboss extends MovableObjects {
                 console.log('Character X', Earth.character.x);
             }
             if (Earth.character.x > 500 && !introPlayed) {
-                this.playIntro();
-                introPlayed = true;
-                console.log('Character X', Earth.character.x);
-                console.log('Intro', introPlayed);
 
+                setInterval(() => {
+                    Earth.character.ChracterMove = false;
+                    this.playIntro();
+                    introPlayed = true;
+                    console.log('Character X', Earth.character.x);
+                    console.log('Intro', introPlayed);
+                }, 2000);
             } else if (introPlayed) {
                 this.playIdle();
+
             }
-        }, 1000 / 5);
+        }, 2000);
+
+        //28.01.2025 - noch nicht smooth CGTP anfrage da
+
     }
 
     playIntro() {
-        let i = this.currentImage % this.IMAGES_INTRO.length;
-        let path = this.IMAGES_INTRO[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
-        if (i === this.IMAGES_INTRO.length - 1) { // Wenn das letzte Bild des Intros erreicht ist
-            this.currentImage = 0; // Zurücksetzen des Bildindex für Idle-Animation
-        }
+        Earth.character.ChracterMove = false;
+        setInterval(() => {
+            let i = this.currentImage % this.IMAGES_INTRO.length;
+            let path = this.IMAGES_INTRO[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+            if (i === this.IMAGES_INTRO.length - 1) { // Wenn das letzte Bild des Intros erreicht ist
+                this.currentImage = 0; // Zurücksetzen des Bildindex für Idle-Animation
+            }
+        }, 1000 / 1);
+
         console.log('Introplayed');
 
     }
 
     playIdle() {
-        let i = this.currentImage % this.IMAGES_IDLE.length;
-        let path = this.IMAGES_IDLE[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
+        Earth.character.ChracterMove = true;
+        setInterval(() => {
+            let i = this.currentImage % this.IMAGES_IDLE.length;
+            let path = this.IMAGES_IDLE[i];
+            this.img = this.imageCache[path];
+            this.currentImage++;
+        }, 1000 / 5);
+
     }
 
 
