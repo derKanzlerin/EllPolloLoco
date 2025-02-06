@@ -55,29 +55,29 @@ class Character extends MovableObjects {
     }
 
     animate() {
-        if (this.CharacterMove === true) {
-            setInterval(() => {
-                this.swim_sound.pause();
-                if (this.world.KeyB.RIGHT && this.x < this.world.level.levelEndX) {
-                    this.x += this.speed;
-                    this.otherDirection = false;
-                    this.swim_sound.play();
-                }
-                if (this.world.KeyB.LEFT && this.x > 0) {
-                    this.x -= this.speed;
-                    this.otherDirection = true;
-                    this.swim_sound.play();
-                }
-                if (this.world.KeyB.UP) {
-                    this.y -= this.speed;
-                    this.swim_sound.play();
-                }
-                if (this.world.KeyB.DOWN) {
-                    this.y += this.speed;
-                    this.swim_sound.play();
-                }
-            }, 1000 / 40);
-        }
+
+        setInterval(() => {
+            this.swim_sound.pause();
+            if (this.world.KeyB.RIGHT && this.x < this.world.level.levelEndX) {
+                this.x += this.speed;
+                this.otherDirection = false;
+                this.swim_sound.play();
+            }
+            if (this.world.KeyB.LEFT && this.x > 0) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+                this.swim_sound.play();
+            }
+            if (this.world.KeyB.UP) {
+                this.y -= this.speed;
+                this.swim_sound.play();
+            }
+            if (this.world.KeyB.DOWN) {
+                this.y += this.speed;
+                this.swim_sound.play();
+            }
+        }, 1000 / 40);
+
         setInterval(() => {
             if (this.world.KeyB.RIGHT || this.world.KeyB.UP || this.world.KeyB.DOWN || this.world.KeyB.LEFT) {
                 let i = this.currentImage % this.IMAGES_SWIM.length; // modulos -> Makes a loop over the lenghth of the array 0 to 5 to 0 

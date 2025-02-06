@@ -1,12 +1,15 @@
 class World {
 
     character = new Character();
-    
+
     enemies = [];
 
     level = level1;
 
     endboss = new Endboss();
+
+    jellyfish = new Jellyfish();
+
 
     canvas;
     ctx;
@@ -54,14 +57,17 @@ class World {
         this.addObjectsToMap(this.level.BGOWater);
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.BGOLight);
+        this.addObjectsToMap(this.level.Barrier);
+        this.addToMap(this.jellyfish);
         this.addToMap(this.character);
         this.addObjectsToMap(this.enemies);
         this.addToMap(this.endboss);
+
         this.ctx.translate(-this.camera_x, 0);
 
         // redraw the Objects
         let self = this;
-        requestAnimationFrame(function () {
+        requestAnimationFrame(function() {
             self.draw();
         })
     }

@@ -1,4 +1,4 @@
-const level1 = new level (
+const level1 = new level(
     [
         new Backgroundobjects('graphics/3. Background/Layers/3.Fondo 1/D1.png', 0),
         new Backgroundobjects('graphics/3. Background/Layers/4.Fondo 2/D1.png', 0),
@@ -22,5 +22,8 @@ const level1 = new level (
         new BGOWater('graphics/3. Background/Layers/5. Water/D1.png', 1440),
         new BGOWater('graphics/3. Background/Layers/5. Water/D2.png', 2160),
 
+    ], [
+        new Barrier('graphics/3. Background/Barrier/2.png', 1040),
+        // new Barrier('graphics/3. Background/Barrier/2.png', 1040),
     ]
 );

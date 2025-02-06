@@ -3,13 +3,15 @@ class level {
     backgroundObjects;
     BGOLight;
     BGOWater;
-    levelEndX = 700;
+    Barrier;
+    levelEndX = 1750;
 
-    constructor(backgroundObjects, BGOLight, BGOWater) {
+    constructor(backgroundObjects, BGOLight, BGOWater, Barrier) {
         // this.enemies = enemies;
         this.backgroundObjects = backgroundObjects;
         this.BGOLight = BGOLight;
         this.BGOWater = BGOWater;
+        this.Barrier = Barrier;
     }
 
 }

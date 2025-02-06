@@ -2,7 +2,7 @@ class Endboss extends MovableObjects {
     width = 400;
     height = 324;
     // size = 0.5;
-    x = 850;
+    x = 2100;
 
     speed = 5;
 
@@ -54,45 +54,37 @@ class Endboss extends MovableObjects {
     }
 
     animate() {
-        let introPlayed = false; // Zustand, ob das Intro schon abgespielt wurde
-
-        setInterval(() => {
-            if (Earth.character.x < 500) {
-                console.log('Character X', Earth.character.x);
+        // Check frequently whether the character has reached the trigger point.
+        let introPlayed = false;
+        const checkInterval = setInterval(() => {
+            // Replace this condition as needed (>= 500 or === 500)
+            if (Earth.character.x >= 1750 && !this.introPlayed) {
+                clearInterval(checkInterval); // Stop checking once the intro is triggered
+                this.playIntro();
+                this.introPlayed = true;
             }
-            if (Earth.character.x > 500 && !introPlayed) {
-
-                setInterval(() => {
-                    Earth.character.ChracterMove = false;
-                    this.playIntro();
-                    introPlayed = true;
-                    console.log('Character X', Earth.character.x);
-                    console.log('Intro', introPlayed);
-                }, 2000);
-            } else if (introPlayed) {
-                this.playIdle();
-
-            }
-        }, 2000);
-
-        //28.01.2025 - noch nicht smooth CGTP anfrage da
-
+        }, 100);
     }
 
     playIntro() {
-        Earth.character.ChracterMove = false;
-        setInterval(() => {
-            let i = this.currentImage % this.IMAGES_INTRO.length;
-            let path = this.IMAGES_INTRO[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-            if (i === this.IMAGES_INTRO.length - 1) { // Wenn das letzte Bild des Intros erreicht ist
-                this.currentImage = 0; // Zurücksetzen des Bildindex für Idle-Animation
+        let frameIndex = 0;
+        const introInterval = setInterval(() => {
+            if (frameIndex < this.IMAGES_INTRO.length) {
+                const path = this.IMAGES_INTRO[frameIndex];
+                this.img = this.imageCache[path];
+                frameIndex++;
+            } else {
+                // Intro is finished: clear the interval and switch to idle animation
+                clearInterval(introInterval);
+                // Reset the frame counter for the idle animation if needed
+                this.currentImage = 0;
+                // Allow the character to move to Level EndX or wherever
+                Earth.level.levelEndX = 2160;
+                this.playIdle();
             }
-        }, 1000 / 1);
+        }, 1000 / 10); // Adjust the speed as necessary
 
-        console.log('Introplayed');
-
+        console.log('Intro played');
     }
 
     playIdle() {
