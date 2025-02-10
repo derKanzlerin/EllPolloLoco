@@ -24,6 +24,7 @@ class World {
         this.randomizeEnemies();
         this.draw();
         this.setworld();
+        this.checkCollisions();
     }
 
 
@@ -117,9 +118,20 @@ class World {
         this.ctx.restore();
     }
 
-    isColliding(mo) {
-        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+    checkCollisions() {
+        setInterval(() => {
+            this.enemies.forEach(element => {
+                if (this.character.isColliding(element)) {
+                    console.log('collingCharacter with Pufffish');
+                }
+            });
+            if (this.character.isColliding(this.jellyfish)) {
+                console.log('collingCharacter with Jellyfish');
+            }
+        }, 1000);
     }
+
+
 
 
 
