@@ -25,6 +25,21 @@ class MovableObjects {
         });
     }
 
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    rect(ctx) {
+
+        if (this instanceof Character || this instanceof PufffishGreen || this instanceof PufffishRed || this instanceof PufffishPink || this instanceof Jellyfish || this instanceof Endboss) {
+            ctx.beginPath();
+            ctx.lineWidth = "2";
+            ctx.strokeStyle = "red";
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+        }
+    }
+
     moveRight() {
         console.log("move right");
 
@@ -35,4 +50,7 @@ class MovableObjects {
             this.x -= this.speed;
         }, 1000 / 60);
     };
+
+
+
 }

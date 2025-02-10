@@ -38,7 +38,7 @@ class Jellyfish extends MovableObjects {
     }
 
     animate() {
-        this.swim_sound.play();
+        // this.swim_sound.play(); need to updatet
         setInterval(() => {
             let i = this.currentImage % this.IMAGES_IDLE.length;
             let path = this.IMAGES_IDLE[i];

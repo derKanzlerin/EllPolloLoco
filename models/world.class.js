@@ -85,21 +85,46 @@ class World {
 
     // Draw the Image
     addToMap(mo) {
+
+
+
         if (mo.opacity !== undefined) {
             this.ctx.globalAlpha = mo.opacity; // Set opacity for light
         }
         if (mo.otherDirection) { // Character img mirroring by direction change 
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);
-            mo.x = mo.x * -1;
+            this.flipImage(mo);
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-        if (mo.otherDirection) { //Character img mirroring by direction change resret
-            mo.x = mo.x * -1;
-            this.ctx.restore();
 
+        mo.draw(this.ctx);
+
+        mo.rect(this.ctx)
+
+        if (mo.otherDirection) { //Character img mirroring by direction change resret
+            this.flipImgaeback(mo);
         }
         this.ctx.globalAlpha = 1; // Reset opacity for future drawings
     }
-}
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);
+        mo.x = mo.x * -1;
+    }
+
+    flipImgaeback(mo) {;
+        mo.x = mo.x * -1;
+        this.ctx.restore();
+    }
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+    }
+
+
+
+
+
+
+
+} //End of Class
